@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+spec:
+  serviceName: mariadb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:11
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              name: mysql
+          env:
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: shlink-db
+                  key: mariadb-root-password
+            - name: MARIADB_DATABASE
+              value: shlink
+            - name: MARIADB_USER
+              value: shlink
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: shlink-db
+                  key: mariadb-password
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "mariadb-admin ping -h 127.0.0.1 -uroot -p${MARIADB_ROOT_PASSWORD} --silent"]
+              
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "mariadb-admin ping -h 127.0.0.1 -uroot -p${MARIADB_ROOT_PASSWORD} --silent"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+          resources: {}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi

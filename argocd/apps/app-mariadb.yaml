@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mariadb
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Terorinsh/argops.git
+    targetRevision: main
+    path: platform/mariadb
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: shlink
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - Replace=true
+  ignoreDifferences:
+    - kind: PersistentVolumeClaim
+      jsonPointers:
+        - /spec/resources/requests/storage

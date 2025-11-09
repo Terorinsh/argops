@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shlink
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Terorinsh/shlinkchart.git
+    targetRevision: main
+    path: shlinkchart
+    helm:
+      valueFiles: []
+      values: |
+        replicaCount: 1
+        image:
+          repository: shlinkio/shlink
+          tag: "4.4.0"
+        service:
+          port: 8080
+        ingress:
+          enabled: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: shlink
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

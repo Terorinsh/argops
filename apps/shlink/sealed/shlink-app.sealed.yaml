@@ -1,0 +1,14 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: shlink-app
+  namespace: shlink
+spec:
+  encryptedData:
+    SHLINK_SECRET: AgB9dc0MHNWicyEqwer2QvaNPu4M2nXcrLXQI+mUcOCJXJZxGY0UUbzub4AQOmkwYVk9Fh1m/4/KJAGL0LFxC/qr3lEct9zzxltmvGX7l4PMM73iK7r7TG5NsH3KVYoG+oVv/9bIQ0Uyy0WiUqN+QUByMoVGKVVrP5Tr5YCG0r3c+XNJb69Fly7eecOIMeyzsfJ7jaTXmZE7NrobcVQOmjITjTFwfr8t2Etu6XY1zVHzuDDtARGXMPEq7WTH4KNlO4MT6d4luksPguPMH0Zh/geNM7BnzfV+jiDo5+WwILxfciA7+vhfpQ8SLi5YawnOh5NvTpyr3Hg9zM6ZoedFOWzjZuJeApowpnMKEz1Pf/voU7AoJZf8c9DxlMMFpR+YiuRw01iQV1MdUYUwK58RD8GMSI+pMqOTWTsS5mI0NunpXf9w6DuRlR9kyJyAUimR61TpB4kdkDvV2m9sBj5Bd3WDccdDhUCgm1ibMQ5QflgOfaK+hCJBI70u9jXubRqznVj1+Umc7rp7CiibkPJ/w11oHNFZ8xxz8rhDtQnarckEqAlXbju2j593LSODzJTtucdaB8oNnsdZ06q2gO5tJaoE33mOKyOcWTH99BW0qEpWO1gV8WjhWraj4Toi2rBURB6PZ9WmJNazH+49IDMUJrWYxICBIYpsJKPf/3akTWOqrQlbQuGFJDiL7gxXljtBLJiENmch4xC+vm2tWnTAwJ8fqoeP6uuRZV1SxtiB9dsNU1yoB5STRiO/auUzg2VYciux4CO9xBSPTWLkTLqdSjlK
+  template:
+    metadata:
+      name: shlink-app
+      namespace: shlink
+    type: Opaque

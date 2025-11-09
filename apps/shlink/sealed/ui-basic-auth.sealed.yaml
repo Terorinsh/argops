@@ -1,0 +1,14 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: ui-basic-auth
+  namespace: shlink
+spec:
+  encryptedData:
+    auth: AgAGQHI6iPHj0XhQ0Jf0AtCQ9Z0Fvi6js2Fdv9OERNzTxse6lFzNHm8skWCiXv8TfRCOjgKN5dIFA5jNCIKs2mULRTUP4eFdljTV9age7w9oWOnoTi+6564nJXOzBZG54J9to6xBwDg2O+CW4NveYoj3JgbdZposHTV8lydVYf8HtufhGVYl2RMj4zQLWMnnlSJPjROKkXnR5gFAmlevpeXI9hdQk/4FnylMfYqI/u75W0jodVM7ISUQOigKMEMfrc+R9wOLG6/Q9hSP1QKQhFun3VwUrcFXsVbzPP4fR9FDaSlzk21kOQLYnVM4BsvWOzEiSC/LUsUukciwAhp/TluduHXlGQsstVkx4fhJVCBbxLBeeh8kKXBlOfub7QTXyE+DEtWoRGsk0Us5Kb/4UReB8ch1Mo+HFy6s7Uo92/gHmztmEVX/OEJF/E6S4tcV1QQTF6EF7RBlSMSIAdntG1FbOfWbaGB14dN4JYbxltDiRe89aOiGn3WjGR2u1TcWty5pN+m0/lyXNfjzQoAOqq/W93zHVTwxwKDtT2+wzw7ZjjUuTKdc1yckl881EytelkE0zmHZlfeAEsR/WYPsg1luZAiPLURxK0RBJDtqkDTd1IbgpdTCRJE19jnvmshtMfkC1hJBaEltCieu5qE7yoc3+oniz6BfkAem6ux7SFD5XtVvyVhs87XAexkV3kL55muna9lxkvbw34f+cdWClhWrY8NJT4RVFF9AGVIokCfZ8ghEBszhy0wmuF4naF+MnYTGXj4vcZCUm/6m5T8cdVqI6hI=
+  template:
+    metadata:
+      name: ui-basic-auth
+      namespace: shlink
+    type: Opaque
